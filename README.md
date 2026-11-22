@@ -1,6 +1,6 @@
 Yair-PerfMon-ReliableCSV
 
-A Performance Monitor template that records system and process activity into CSV files for 12 hours.
+A Performance Monitor template built for zero trust enterprise environments or restricted systems where PowerShell or other diagnostic tools cannot be used to find the root cause of a problem. It records system and process activity into CSV files for 12 hours.
 
 Output path:
 %systemdrive%\PerfLogs\Yair-PerfMon-ReliableCSV\yyyyMMdd-NNNNNN
