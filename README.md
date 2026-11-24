@@ -1,21 +1,30 @@
-Yair-PerfMon-ReliableCSV
+# Yair-PerfMon-ReliableCSV
 
-A Performance Monitor template built for zero trust enterprise environments or restricted systems where PowerShell or other diagnostic tools cannot be used to find the root cause of a problem. It records system and process activity into CSV files for 12 hours.
+A Performance Monitor template for restricted or zero-trust enterprise environments where PowerShell and other diagnostic tools can't be used to find the root cause of a problem. It records system and process activity to CSV files for 12 hours.
 
-Output path:
-%systemdrive%\PerfLogs\Yair-PerfMon-ReliableCSV\yyyyMMdd-NNNNNN
+## What it collects
 
-What it collects
-Every 5 seconds: CPU, memory, and disk activity.
-Every 10 seconds: network traffic, process CPU usage, and process IDs.
-Every 15 seconds: process memory and disk I/O.
-Every 300 seconds: total physical memory.
+| Interval | Data |
+|---|---|
+| 5 seconds | CPU, memory and disk activity |
+| 10 seconds | Network traffic, process CPU usage, process IDs |
+| 15 seconds | Process memory and disk I/O |
+| 300 seconds | Total physical memory |
 
-How to run (Administrator)
-logman import -n "Yair-PerfMon-ReliableCSV" -xml "Yair-PerfMon-ReliableCSV.xml"
-logman start -n "Yair-PerfMon-ReliableCSV"
+## Output
 
-Notes
-Match process IDs with the other process logs to tell duplicate process names apart.
-Automatic cleanup is off and logging runs up to 12 hours, so keep an eye on free disk space.
-Once collection finishes, pass the CSV files to an agent to analyze the data and provide a full overview.
+`%systemdrive%\PerfLogs\Yair-PerfMon-ReliableCSV\yyyyMMdd-NNNNNN`
+
+## How to use
+
+1. Open Performance Monitor (`perfmon`) as Administrator.
+2. Go to Data Collector Sets -> User Defined, right-click -> New -> Data Collector Set.
+3. Choose "Create from a template", click Browse, and select `Yair-PerfMon-ReliableCSV.xml`.
+4. Finish, then right-click the new set and choose Start.
+5. It runs for up to 12 hours. Logs are written as CSV files under `%systemdrive%\PerfLogs\Yair-PerfMon-ReliableCSV\yyyyMMdd-NNNNNN`.
+
+## Notes
+
+- Match process IDs with the other process logs to tell duplicate process names apart.
+- Automatic cleanup is off and logging runs up to 12 hours, so keep an eye on free disk space.
+- When collection finishes, analyze the CSV files with your organization's approved tools (for example, Excel, Power BI or an approved AI assistant).
